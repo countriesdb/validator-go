@@ -1,8 +1,28 @@
 # github.com/countriesdb/validator-go
 
-Backend validation package for CountriesDB. Provides server-side validation for country and subdivision codes.
+**Backend validation package for CountriesDB.** Provides server-side validation for country and subdivision codes using ISO 3166-1 and ISO 3166-2 standards.
 
-**Important**: This package only provides validation methods. Data fetching is frontend-only and must be done through frontend packages.
+[![Go Reference](https://pkg.go.dev/badge/github.com/countriesdb/validator-go.svg)](https://pkg.go.dev/github.com/countriesdb/validator-go)
+
+📖 **[Full Documentation](https://countriesdb.com/docs/backend-api)** | 🌐 **[Website](https://countriesdb.com)**
+
+**Important**: This package only provides validation methods. Data fetching for frontend widgets must be done through frontend packages ([`@countriesdb/widget-core`](https://www.npmjs.com/package/@countriesdb/widget-core), [`@countriesdb/widget`](https://www.npmjs.com/package/@countriesdb/widget)).
+
+## Getting Started
+
+**⚠️ API Key Required:** This package requires a CountriesDB **private** API key to function. You must create an account at [countriesdb.com](https://countriesdb.com) to obtain your private API key. Test accounts are available with limited functionality.
+
+- 🔑 [Get your API key](https://countriesdb.com) - Create an account and get your private key
+- 📚 [View documentation](https://countriesdb.com/docs/backend-api) - Complete API reference and examples
+- 💬 [Support](https://countriesdb.com) - Get help and support
+
+## Features
+
+- ✅ **ISO 3166 Compliant** - Validates ISO 3166-1 (countries) and ISO 3166-2 (subdivisions) codes
+- ✅ **Multiple Validation Options** - Support for `follow_upward`, `follow_related`, and `allow_parent_selection`
+- ✅ **Batch Validation** - Validate multiple countries or subdivisions in a single request
+- ✅ **Context Support** - Full support for Go's `context.Context` for cancellation and timeouts
+- ✅ **Detailed Error Messages** - Returns specific error messages from the CountriesDB API
 
 ## Installation
 
@@ -162,7 +182,9 @@ type ValidationResult struct {
 
 ## Examples
 
-See `/examples/backend-go-http` and `/examples/backend-go-resty` for runnable demos that mirror the documentation and use this package/API.
+Runnable examples using this package are available in the [countriesdb/examples](https://github.com/countriesdb/examples) repository:
+
+- [`go/backend-http`](https://github.com/countriesdb/examples/tree/main/go/backend-http) – HTTP client examples using Go's standard `net/http` package
 
 ## Requirements
 
@@ -171,6 +193,10 @@ See `/examples/backend-go-http` and `/examples/backend-go-resty` for runnable de
 
 ## License
 
-MIT
+Proprietary (NAYEE LLC)
+
+Copyright (c) NAYEE LLC. All rights reserved.
+
+This software is the proprietary property of NAYEE LLC. For licensing inquiries, please contact [NAYEE LLC](https://nayee.net).
 
 
