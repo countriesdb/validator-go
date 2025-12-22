@@ -4,7 +4,7 @@
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/countriesdb/validator-go.svg)](https://pkg.go.dev/github.com/countriesdb/validator-go)
 
-📖 **[Full Documentation](https://countriesdb.com/docs/backend-api)** | 🌐 **[Website](https://countriesdb.com)**
+📖 **[Full Documentation](https://countriesdb.com/docs/backend-api)** | 🌐 **[Website](https://countriesdb.com)** | 📦 **[Package](https://github.com/countriesdb/validator-go)**
 
 **Important**: This package only provides validation methods. Data fetching for frontend widgets must be done through frontend packages ([`@countriesdb/widget-core`](https://www.npmjs.com/package/@countriesdb/widget-core), [`@countriesdb/widget`](https://www.npmjs.com/package/@countriesdb/widget)).
 
@@ -29,6 +29,8 @@
 ```bash
 go get github.com/countriesdb/validator-go
 ```
+
+**Package:** [github.com/countriesdb/validator-go](https://github.com/countriesdb/validator-go)
 
 ## Usage
 
@@ -184,7 +186,8 @@ type ValidationResult struct {
 
 Runnable examples using this package are available in the [countriesdb/examples](https://github.com/countriesdb/examples) repository:
 
-- [`go/backend-http`](https://github.com/countriesdb/examples/tree/main/go/backend-http) – HTTP client examples using Go's standard `net/http` package
+- [`go/backend-validator`](https://github.com/countriesdb/examples/tree/main/go/backend-validator) – Examples using the `validator-go` package
+- [`go/backend-http`](https://github.com/countriesdb/examples/tree/main/go/backend-http) – HTTP client examples using Go's standard `net/http` package (raw HTTP calls)
 
 ## Requirements
 
