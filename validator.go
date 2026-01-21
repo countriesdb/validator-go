@@ -83,17 +83,15 @@ func (v *Validator) ValidateCountries(ctx context.Context, codes []string, opts 
 		return []ValidationResult{}, nil
 	}
 
-	// Validate format
+	// Convert to uppercase - format validation handled by backend
+	upperCodes := make([]string, len(codes))
 	for i, code := range codes {
-		if len(code) != 2 {
-			return nil, fmt.Errorf("invalid country code format. All codes must be 2-character strings")
-		}
-		codes[i] = strings.ToUpper(code)
+		upperCodes[i] = strings.ToUpper(code)
 	}
 
 	var response multiResult
 	err := v.post(ctx, "/api/validate/country", map[string]any{
-		"code":          codes,
+		"code":          upperCodes,
 		"follow_upward": false, // Disabled for multi-select
 	}, &response)
 
@@ -119,12 +117,13 @@ func (v *Validator) ValidateSubdivision(ctx context.Context, code string, countr
 
 // ValidateSubdivisions validates multiple subdivisions for the same country.
 func (v *Validator) ValidateSubdivisions(ctx context.Context, codes []string, country string, opts SubdivisionOptions) ([]ValidationResult, error) {
-	if len(country) != 2 {
-		return nil, errors.New("invalid country code")
-	}
-
 	if len(codes) == 0 {
 		return []ValidationResult{}, nil
+	}
+
+	// Basic type check for country - format validation handled by backend
+	if country == "" {
+		return nil, errors.New("country must be a non-empty string")
 	}
 
 	payloadCodes := make([]string, len(codes))

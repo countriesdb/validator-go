@@ -182,6 +182,45 @@ type ValidationResult struct {
 }
 ```
 
+## Error Handling
+
+### Single-Value Methods
+
+Single-value methods (`ValidateCountry`, `ValidateSubdivision`) return validation results with `Valid: false` for invalid input. They only return errors on network failures:
+
+```go
+result, err := validator.ValidateCountry(ctx, "US", validator.CountryOptions{})
+if err != nil {
+    log.Fatal(err) // Network error
+}
+if !result.Valid {
+    fmt.Printf("Validation failed: %s\n", result.Message)
+}
+```
+
+### Multi-Value Methods
+
+Multi-value methods (`ValidateCountries`, `ValidateSubdivisions`) return per-item results. Invalid codes are included in the results slice with `Valid: false`. They only return errors on network failures or invalid input types:
+
+```go
+results, err := validator.ValidateCountries(ctx, []string{"US", "BAD", "CA"}, validator.CountryOptions{})
+if err != nil {
+    log.Fatal(err) // Network error
+}
+
+for _, result := range results {
+    if !result.Valid {
+        fmt.Printf("Code %s failed: %s\n", result.Code, result.Message)
+    }
+}
+```
+
+**Note:** 
+- Empty slices return empty results slices (not an error)
+- Basic type checks are performed client-side (e.g., ensuring country is a non-empty string)
+- Format validation (e.g., 2-character country codes) is handled by the backend and included in results with appropriate error messages
+- Invalid format codes or invalid country codes are returned in the results slice with `Valid: false` rather than returning errors
+
 ## Examples
 
 Runnable examples using this package are available in the [countriesdb/examples](https://github.com/countriesdb/examples) repository:
